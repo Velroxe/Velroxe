@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 Velroxe
 
-## Getting Started
+<p align="center">
+  <img src="./public/images/logo/Velroxe%20BB.png" alt="Velroxe Logo" width="300"/>
+</p>
 
-First, run the development server:
+> **Velroxe** is a modern **software development agency** dedicated to building high-performance, visually stunning, and scalable web solutions.  
+From sleek portfolio websites to custom applications, we help businesses establish a strong digital presence.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Our Mission
+To empower businesses and individuals with **modern, fast, and engaging web solutions** that drive growth and leave a lasting impression.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎯 Goals
+- ✅ Deliver stunning websites and applications  
+- ✅ Ensure performance, accessibility, and scalability  
+- ✅ Grow into a **full-scale tech partner** for businesses worldwide  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 💼 Services
+- 🌐 Portfolio & Business Websites  
+- 🛒 E-commerce Development  
+- 🖥 Custom Web Applications  
+- 🎨 UI/UX Design  
+- 🔧 Maintenance & Optimization  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📸 Portfolio
+Currently showcasing **2–3 featured projects** (with more coming soon 🚀).  
+👉 Check them out on the [Portfolio Page](https://velroxe.com/portfolio).
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📩 Contact
+📧 **Email:** velroxe.studio@gmail.com  
+📱 **Phone/WhatsApp:** +91 888 284 3823  
+🌍 **Website:** [velroxe.com](https://velroxe.com)  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🌐 Connect With Us
+
+<p align="center">
+  <a href="https://github.com/Velroxe">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
+  <a href="https://linkedin.com/company/velroxe">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <a href="https://twitter.com/Velroxe">
+    <img src="https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white"/>
+  </a>
+  <a href="https://instagram.com/velroxe">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
+  </a>
+</p>
+
+---
+
+## ⚡ Tech Stack
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black"/>
+</p>
+
+---
+
+## 📜 License
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
