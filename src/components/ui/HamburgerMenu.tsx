@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 interface HamburgerMenuProps {
   isActive?: boolean;   // width in rem

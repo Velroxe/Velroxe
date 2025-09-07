@@ -52,14 +52,14 @@ export default function ShinyButton({
     setShineRgb(colorToRgb(shineColor));
   }, [shineColor]);
 
-  const style: React.CSSProperties = {
+  const style = {
     backgroundColor: bgColor,
     color: textColor,
-    ["--shine-rgb" as any]: shineRgb,
-    ["--shine-oapcity" as any]: shineOpacity,
-    ["--shine-duration" as any]: `${duration}s`,
-    ["--pause-on-hover" as any]: pauseOnHover ? "paused" : "running",
-  };
+    "--shine-rgb": shineRgb,
+    "--shine-oapcity": String(shineOpacity),
+    "--shine-duration": `${duration}s`,
+    "--pause-on-hover": pauseOnHover ? "paused" : "running",
+  } as React.CSSProperties;
 
   const iconClasses = `
     inline-flex text-lg sm:text-xl md:text-2xl

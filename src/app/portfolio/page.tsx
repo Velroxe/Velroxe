@@ -4,7 +4,6 @@ import GetInTouch from "@/components/sections/GetInTouch";
 import { projects } from "@/utils/constants";
 import Image from "next/image";
 import React, { useRef } from "react";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 // =====================
 // HERO COMPONENT
