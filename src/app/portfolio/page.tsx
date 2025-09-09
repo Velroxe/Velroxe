@@ -45,7 +45,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
 
   return (
     <div
-      className="group relative rounded-2xl overflow-hidden shadow-lg glassmorphism hover:shadow-xl transition-shadow"
+      className="group relative rounded-2xl overflow-hidden shadow-lg glassmorphism hover:shadow-xl transition-shadow border border-[var(--borderColor1)]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -102,7 +102,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
 // =====================
 function ProjectGrid() {
   return (
-    <section className="w-full max-w-6xl mx-auto px-6 pt-12 pb-8 lg:pt-16 lg:pb-12">
+    <section className="w-full max-w-6xl mx-auto px-6 pt-12 pb-6 lg:pt-16 lg:pb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, idx) => (
           <ProjectCard key={idx} project={project} />

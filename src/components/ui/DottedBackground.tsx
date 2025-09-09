@@ -14,7 +14,7 @@ export default function DottedBackground({
   className = "",
 }: DottedBackgroundProps) {
   const backgroundStyle: React.CSSProperties = {
-    backgroundImage: `radial-gradient(circle, var(--gridBackgroundLineColor) ${dotSize}px, transparent ${dotSize}px)`,
+    backgroundImage: `radial-gradient(circle, var(--borderColor1) ${dotSize}px, transparent ${dotSize}px)`,
     backgroundSize: `${interval}px ${interval}px`,
   };
 

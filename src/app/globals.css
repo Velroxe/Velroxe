@@ -5,12 +5,12 @@
    Grid Background Variables
 ========================= */
 :root {
-  --gridBackgroundLineColor: rgba(200, 200, 200, 0.6);
+  --borderColor1: rgba(200, 200, 200, 0.6);
   /* Light mode default */
 }
 
 .dark {
-  --gridBackgroundLineColor: rgba(200, 200, 200, 0.15);
+  --borderColor1: rgba(200, 200, 200, 0.15);
   /* Dark mode override */
 }
 

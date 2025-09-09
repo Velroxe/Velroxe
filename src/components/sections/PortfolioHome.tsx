@@ -23,7 +23,7 @@ export default function PortfolioHome() {
               <Link
                 href="/portfolio"
                 key={idx}
-                className="min-w-[250px] max-w-[250px] hover-cursor-effect cursor-pointer rounded-xl glassmorphism shadow-md overflow-hidden bg-white dark:bg-black dark:border dark:border-[var(--gridBackgroundLineColor)]"
+                className="min-w-[250px] max-w-[250px] hover-cursor-effect cursor-pointer rounded-xl glassmorphism shadow-md overflow-hidden bg-white dark:bg-black border border-[var(--borderColor1)]"
               >
                 <div className="relative w-full h-40">
                   <Image

@@ -55,7 +55,7 @@ const ServicesHome = () => {
               className="
                 group relative 
                 rounded-2xl p-6
-                bg-white dark:bg-black border border-gray-200 dark:border-gray-700 shadow-md hover:shadow-xl
+                bg-white dark:bg-black border border-[var(--borderColor1)] shadow-md hover:shadow-xl
                 transition-transform duration-300 
                 hover:-translate-y-2
                 flex flex-col items-center text-center

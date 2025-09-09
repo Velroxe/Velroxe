@@ -58,7 +58,7 @@ const WhyChooseUs = () => {
               flex items-start gap-4
               p-6 rounded-2xl
               bg-white dark:bg-black 
-              border border-[var(--gridBackgroundLineColor)]
+              border border-[var(--borderColor1)]
               shadow-md hover:shadow-xl
               transition-transform duration-300 
               hover:-translate-y-2

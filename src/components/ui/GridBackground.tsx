@@ -13,8 +13,8 @@ export default function GridBackground({
 }: GridBackgroundProps) {
   const backgroundStyle: React.CSSProperties = {
     backgroundImage: `
-      linear-gradient(to right, var(--gridBackgroundLineColor) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--gridBackgroundLineColor) 1px, transparent 1px)
+      linear-gradient(to right, var(--borderColor1) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--borderColor1) 1px, transparent 1px)
     `,
     backgroundSize: `${interval}px ${interval}px`,
   };

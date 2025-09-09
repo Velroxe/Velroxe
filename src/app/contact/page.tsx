@@ -187,7 +187,7 @@ export default function Contact() {
     <div className='relative w-full h-fit px-6 md:px-12 lg:px-20'>
       {/* Page layout paddings */}
 
-      <section className="w-full max-w-6xl mx-auto sm:px-4 md:px-6 pt-12 lg:pt-16">
+      <section className="w-full max-w-6xl mx-auto sm:px-4 md:px-6 pt-12 lg:pt-16 pb-20 md:pb-24">
         <ContactHeading />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           <ContactInfo />

@@ -73,7 +73,7 @@ function TermsContent() {
   ];
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-6 pt-12 pb-8 lg:pt-16 lg:pb-12">
+    <section className="w-full max-w-6xl mx-auto px-6 pt-12 lg:pt-16 pb-20 md:pb-24">
       <div className="space-y-10">
         {sections.map((sec, idx) => (
           <div key={idx}>

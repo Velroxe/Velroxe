@@ -9,7 +9,7 @@ const GetInTouch = () => {
   return (
     <section
       className="
-        w-full py-8 lg:py-16 relative z-10
+        w-full py-12 lg:py-20 relative z-10
         flex justify-center
       "
     >

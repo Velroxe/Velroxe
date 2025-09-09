@@ -50,7 +50,7 @@ export default function RootLayout({
         >
           <CursorFollower />
           <NavigationBar />
-          <div className='py-20 md:py-24'>
+          <div className='pt-20 md:pt-24'>
             {children}
           </div>
           <Footer />
