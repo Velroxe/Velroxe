@@ -134,16 +134,15 @@ const NavigationBar = () => {
       >
         {/* Logo */}
         <Link href="/" className="relative w-36 h-10 hover-cursor-effect inline-block">
-          <Image
-            alt="Velroxe Logo"
+          <img
             src={
               currentTheme === "dark"
                 ? "/images/logo/Velroxe W.svg"
                 : "/images/logo/Velroxe B.svg"
             }
-            fill
-            priority
-            className="object-contain"
+            alt="Velroxe Logo"
+            className="h-full w-auto object-contain"
+            fetchPriority="high"
           />
         </Link>
 
