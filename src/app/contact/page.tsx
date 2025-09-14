@@ -2,8 +2,9 @@
 
 import ShinyButton from "@/components/ui/ShinyButton";
 import { contactDetails } from "@/utils/constants";
+import { useTheme } from "next-themes";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaEnvelope,
   FaPhoneAlt,
@@ -14,6 +15,7 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { PiPaperPlaneRight } from "react-icons/pi";
+import { Bounce, toast } from "react-toastify";
 
 // =====================
 // CONTACT HEADING
@@ -132,16 +134,88 @@ function ContactInfo() {
 // CONTACT FORM
 // =====================
 function ContactForm() {
+
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
+  const { theme, systemTheme } = useTheme();
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        // console.log("Message sent successfully!");
+        toast.success('Message sent successfully', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: currentTheme,
+          transition: Bounce,
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        // console.log("Failed to send message: " + data.error);
+        toast.error('Failed to send message', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: currentTheme,
+          transition: Bounce,
+        });
+      }
+    } catch (err) {
+      // console.log("Something went wrong while sending message: ", err);
+      toast.error('Something went wrong while sending message', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: currentTheme,
+        transition: Bounce,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
       <div className="p-6 md:p-8 rounded-2xl glassmorphism border border-gray-300 dark:border-gray-700">
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label className="block mb-2 text-sm font-medium">Name</label>
             <input
               type="text"
+              name="name"
               placeholder="Your name"
+              value={formData.name}
+              onChange={handleChange}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent focus:ring-2 focus:ring-pink-500 outline-none"
             />
           </div>
@@ -149,15 +223,21 @@ function ContactForm() {
             <label className="block mb-2 text-sm font-medium">Email</label>
             <input
               type="email"
+              name="email"
               placeholder="Your email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent focus:ring-2 focus:ring-pink-500 outline-none"
             />
           </div>
           <div>
             <label className="block mb-2 text-sm font-medium">Message</label>
             <textarea
+              name="message"
               placeholder="Your message"
               rows={5}
+              value={formData.message}
+              onChange={handleChange}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent focus:ring-2 focus:ring-pink-500 outline-none resize-none"
             ></textarea>
           </div>
@@ -168,10 +248,11 @@ function ContactForm() {
             shineColor="white"
             iconHoverEffect="rotate"
             iconPosition="right"
-            icon={<PiPaperPlaneRight />}
+            icon={!loading ? <PiPaperPlaneRight /> : ""}
             shineOpacity={0.5}
+            disabled={loading}
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </ShinyButton>
         </form>
       </div>

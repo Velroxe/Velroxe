@@ -15,6 +15,7 @@ type Props = {
   iconPosition?: "left" | "right"; // NEW ✅
   iconHoverEffect?: "rotate" | "moveRight" | "moveLeft" | "raiseTopRight" | null; // UPDATED ✅
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 export default function ShinyButton({
@@ -30,6 +31,7 @@ export default function ShinyButton({
   iconPosition = "right", // ✅ Default: right
   iconHoverEffect = null,
   onClick,
+  disabled = false,
 }: Props) {
   const [shineRgb, setShineRgb] = useState("255,255,255");
 
@@ -85,11 +87,12 @@ export default function ShinyButton({
         sm:px-5 sm:py-3 sm:text-base
         md:px-6 md:py-3.5 md:text-lg
         rounded-lg sm:rounded-xl md:rounded-2xl
-        font-medium cursor-pointer
+        font-medium ${disabled ? "cursor-not-allowed" : "cursor-pointer"}
         ${className}
       `}
       style={style}
       onClick={onClick}
+      disabled={disabled}
     >
       <span className="relative z-10 flex items-center gap-2">
         {/* Icon left */}

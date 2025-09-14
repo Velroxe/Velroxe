@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import CursorFollower from "@/components/ui/CursorFollower";
 import NavigationBar from "@/components/layout/NavigationBar";
 import Footer from "@/components/layout/Footer";
+import { ToastContainer } from "react-toastify";
 
 // Poppins
 const poppins = localFont({
@@ -48,6 +49,7 @@ export default function RootLayout({
           defaultTheme="system" // default option
           enableSystem={true} // allow system theme detection
         >
+          <ToastContainer />
           <CursorFollower />
           <NavigationBar />
           <div className='pt-20 md:pt-24'>
