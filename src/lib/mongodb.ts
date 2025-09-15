@@ -1,10 +1,11 @@
-// lib/dbConnect.ts
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
 if (!MONGODB_URI) {
-  throw new Error("⚠️ Please define the MONGODB_URI in .env.local or production env");
+  throw new Error(
+    "⚠️ Please define the MONGODB_URI in .env.local or production env"
+  );
 }
 
 interface MongooseCache {
@@ -12,10 +13,16 @@ interface MongooseCache {
   promise: Promise<typeof mongoose> | null;
 }
 
-let cached = (global as any).mongoose as MongooseCache;
+// Extend NodeJS.Global to include our cache
+declare global {
+  // eslint-disable-next-line no-var
+  var mongooseCache: MongooseCache | undefined;
+}
 
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+const cached: MongooseCache = global.mongooseCache ?? { conn: null, promise: null };
+
+if (!global.mongooseCache) {
+  global.mongooseCache = cached;
 }
 
 async function dbConnect() {

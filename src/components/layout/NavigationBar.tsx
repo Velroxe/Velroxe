@@ -1,6 +1,5 @@
 "use client";
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";

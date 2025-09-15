@@ -104,6 +104,7 @@ export default function PortfolioHome() {
         pointerIdRef.id = e.pointerId;
       } catch (err) {
         // some browsers might not allow capture, ignore
+        console.log(err);
         pointerIdRef.id = null;
       }
 
@@ -130,7 +131,7 @@ export default function PortfolioHome() {
       lastPointerTime = now;
     };
 
-    const onPointerUp = (e: PointerEvent) => {
+    const onPointerUp = () => {
       if (!dragging) return;
       dragging = false;
 

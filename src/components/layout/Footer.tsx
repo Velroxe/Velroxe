@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram } from "react-icons/fa6";
-import Image from "next/image";
 import { useTheme } from "next-themes";
 import { contactDetails } from "@/utils/constants";
 

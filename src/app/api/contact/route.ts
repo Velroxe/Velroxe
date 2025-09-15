@@ -8,7 +8,10 @@ export async function POST(req: Request) {
     const { name, email, message } = await req.json();
 
     if (!name || !email || !message) {
-      return NextResponse.json({ success: false, error: "Missing fields" }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: "Missing fields" },
+        { status: 400 }
+      );
     }
 
     await dbConnect();
@@ -18,7 +21,7 @@ export async function POST(req: Request) {
 
     // Send Email
     const transporter = nodemailer.createTransport({
-      service: "gmail", // or your SMTP provider
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -27,7 +30,7 @@ export async function POST(req: Request) {
 
     await transporter.sendMail({
       from: email,
-      to: process.env.OWNER_EMAIL, // your email
+      to: process.env.OWNER_EMAIL,
       subject: `New message from ${name}`,
       text: message,
       html: `<p><strong>Name:</strong> ${name}</p>
@@ -36,8 +39,14 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
-    console.error("❌ Error in contact API:", err.message);
-    return NextResponse.json({ success: false, error: "Server error" }, { status: 500 });
+  } catch (err: unknown) {
+    // Narrow unknown to Error type
+    const errorMessage =
+      err instanceof Error ? err.message : "Unknown server error";
+    console.error("❌ Error in contact API:", errorMessage);
+    return NextResponse.json(
+      { success: false, error: "Server error" },
+      { status: 500 }
+    );
   }
 }
