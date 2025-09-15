@@ -3,7 +3,7 @@
 import GetInTouch from "@/components/sections/GetInTouch";
 import { projects } from "@/utils/constants";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // =====================
 // HERO COMPONENT
@@ -28,24 +28,57 @@ function PortfolioHero() {
 // =====================
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile || !cardRef.current || !videoRef.current || !imageRef.current) return;
+
+    const videoEl = videoRef.current;
+    const imageEl = imageRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
+            videoEl.play().catch(() => { });
+            imageEl.style.opacity = "0"; // hide overlay image
+          } else {
+            videoEl.pause();
+            videoEl.currentTime = 0;
+            imageEl.style.opacity = "1"; // show overlay image
+          }
+        });
+      },
+      { threshold: [0, 0.8, 1] }
+    );
+
+    observer.observe(cardRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleMouseEnter = () => {
-    if (videoRef.current) {
+    if (window.innerWidth > 768 && videoRef.current && imageRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.play();
+      imageRef.current.style.opacity = "0"; // fade out on hover
     }
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current) {
+    if (window.innerWidth > 768 && videoRef.current && imageRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
+      imageRef.current.style.opacity = "1"; // show overlay again
     }
   };
 
   return (
     <div
-      className="group relative rounded-2xl overflow-hidden shadow-lg glassmorphism hover:shadow-xl transition-shadow border border-[var(--borderColor1)]"
+      ref={cardRef}
+      className="relative rounded-2xl overflow-hidden shadow-lg glassmorphism hover:shadow-xl transition-shadow border border-[var(--borderColor1)]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -53,10 +86,11 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       <div className="relative w-full h-56 md:h-64 overflow-hidden">
         {/* Static image */}
         <Image
+          ref={imageRef}
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover absolute inset-0 z-10 transition-opacity duration-300 group-hover:opacity-0"
+          className="object-cover absolute inset-0 z-10 transition-opacity duration-300"
         />
         {/* Video with Multiple Sources */}
         <video

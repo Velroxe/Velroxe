@@ -1,7 +1,7 @@
 
 // Contact Details
 export const contactDetails = {
-  email: "velroxe.studio@gmail.com",
+  email: "team@velroxe.com",
   phone: "+91 88828 43823",
   flatPhone: "918882843823",
   socialLinks: {

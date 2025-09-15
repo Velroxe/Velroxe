@@ -97,9 +97,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-3">Get in Touch</h4>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              velroxe.studio@gmail.com
+              {contactDetails.email}
             </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">+91 888 284 3823</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">{contactDetails.phone}</p>
 
             <div className="flex gap-4 mt-4 text-lg">
               <Link
