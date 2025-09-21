@@ -2,8 +2,6 @@
 import { useTheme } from "next-themes";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ThemeSwitcher from "../utils/ThemeSwitcher";
 import HamburgerMenu from "../ui/HamburgerMenu";
 import { useRouter } from "next/navigation";
@@ -31,64 +29,37 @@ const NavigationBar = () => {
   // Hydration guard
   useEffect(() => setMounted(true), []);
 
-  // Shrink top nav on scroll
+  // Shrink top nav on scroll (vanilla JS)
   useEffect(() => {
     if (!mounted || !topNavRef.current) return;
 
-    gsap.registerPlugin(ScrollTrigger);
     const nav = topNavRef.current;
     const initialHeight = nav.offsetHeight;
+    const minHeight = 64;
 
-    const ctx = gsap.context(() => {
-      nav.style.transition = "none";
-      nav.style.willChange = "height";
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const newHeight = Math.max(initialHeight - scrollY, minHeight);
+      nav.style.height = `${newHeight}px`;
+    };
 
-      gsap.fromTo(
-        nav,
-        { height: initialHeight },
-        {
-          height: 64, // shrink to 64px
-          ease: "none",
-          scrollTrigger: {
-            start: 0,
-            end: 200,
-            scrub: true,
-          },
-        }
-      );
-
-      ScrollTrigger.refresh();
-    }, nav);
-
-    return () => ctx.revert();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [mounted]);
 
-  // Animate mobile dropdown links
+  // Animate mobile dropdown links using CSS classes
   useEffect(() => {
-    if (!dropdownRef.current) return;
-
     const container = dropdownRef.current;
-    const items = container.querySelectorAll(".mobile-link");
-    const timeline = gsap.timeline();
+    if (!container) return;
 
     if (showDropdown) {
-      timeline
-        .to(container, { height: "auto", duration: 0.3, ease: "power1.out" })
-        .fromTo(
-          items,
-          { x: 50, opacity: 0 },
-          { x: 0, opacity: 1, stagger: 0.1, duration: 0.4, ease: "power3.out" },
-          "-=0.2"
-        );
+      container.classList.add("show");
     } else {
-      timeline
-        .to(items, { x: 50, opacity: 0, stagger: 0.05, duration: 0.3, ease: "power3.in" })
-        .to(container, { height: 0, duration: 0.3, ease: "power1.in" }, "-=0.2");
+      container.classList.remove("show");
     }
   }, [showDropdown]);
 
-  // Handle outside clicks to close dropdown
-  // Close dropdown on outside click (desktop + touch)
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (!showDropdown) return;
@@ -102,7 +73,7 @@ const NavigationBar = () => {
         setShowDropdown(false);
       } else if (
         themeSwitcherRef.current &&
-        themeSwitcherRef.current.contains(target) // clicked theme switcher
+        themeSwitcherRef.current.contains(target)
       ) {
         setShowDropdown(false);
       }
@@ -129,10 +100,10 @@ const NavigationBar = () => {
       {/* Top nav */}
       <div
         ref={topNavRef}
-        className="top-nav h-20 md:h-24 px-6 md:px-12 flex items-center justify-between max-w-6xl mx-auto"
+        className="top-nav h-20 md:h-24 px-6 md:px-12 flex items-center justify-between max-w-6xl mx-auto transition-height duration-200 ease-out"
       >
         {/* Logo */}
-        <Link href="/" className="relative w-36 h-10 hover-cursor-effect inline-block">
+        <Link href="/" className="relative w-36 h-10 inline-block">
           <img
             src={
               currentTheme === "dark"
@@ -153,7 +124,7 @@ const NavigationBar = () => {
               <Link
                 key={link.name}
                 href={link.route}
-                className="hover-cursor-effect hover-underline"
+                className="hover-underline"
               >
                 {link.name}
               </Link>
@@ -183,18 +154,18 @@ const NavigationBar = () => {
       {/* Mobile dropdown */}
       <div
         ref={dropdownRef}
-        className="lg:hidden overflow-hidden"
-        style={{ height: 0 }}
+        className="lg:hidden overflow-hidden dropdown max-h-0"
       >
         <div className="flex flex-col items-start gap-6 px-6 pt-4 pb-6">
-          {links.map((link) => (
+          {links.map((link, index) => (
             <button
               key={link.name}
               onClick={() => {
                 setShowDropdown(false);
                 router.push(link.route);
               }}
-              className="mobile-link text-black dark:text-white text-md font-medium hover-underline"
+              className={`mobile-link text-black dark:text-white text-md font-medium hover-underline transition-all transform`}
+              style={{ transitionDelay: `${index * 0.05}s` }}
             >
               {link.name}
             </button>

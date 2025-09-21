@@ -69,7 +69,7 @@ function ContactInfo() {
         <ContactInfoCard icon={<FaEnvelope />} title="Email">
           <Link
             href={`mailto:${contactDetails.email}`}
-            className="hover-underline hover-cursor-effect text-gray-700 dark:text-gray-300"
+            className="hover-underline text-gray-700 dark:text-gray-300"
           >
             {contactDetails.email}
           </Link>
@@ -80,7 +80,7 @@ function ContactInfo() {
           <Link
             href={`https://wa.me/${contactDetails.flatPhone}?text=Hello%20Velroxe!`}
             target="_blank"
-            className="hover-underline hover-cursor-effect text-gray-700 dark:text-gray-300"
+            className="hover-underline text-gray-700 dark:text-gray-300"
           >
             {contactDetails.phone}
           </Link>
@@ -96,28 +96,28 @@ function ContactInfo() {
                 <Link
                   href={contactDetails.socialLinks.linkedIn}
                   target="_blank"
-                  className="hover-cursor-effect"
+                  className="hover:scale-125 transition-transform"
                 >
                   <FaLinkedin className="text-2xl" />
                 </Link>
                 <Link
                   href={contactDetails.socialLinks.instagram}
                   target="_blank"
-                  className="hover-cursor-effect"
+                  className="hover:scale-125 transition-transform"
                 >
                   <FaInstagram className="text-2xl" />
                 </Link>
                 <Link
                   href={contactDetails.socialLinks.x}
                   target="_blank"
-                  className="hover-cursor-effect"
+                  className="hover:scale-125 transition-transform"
                 >
                   <FaXTwitter className="text-2xl" />
                 </Link>
                 <Link
                   href={contactDetails.socialLinks.github}
                   target="_blank"
-                  className="hover-cursor-effect"
+                  className="hover:scale-125 transition-transform"
                 >
                   <FaGithub className="text-2xl" />
                 </Link>

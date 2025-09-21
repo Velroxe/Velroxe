@@ -55,7 +55,7 @@ body {
 
 /* Red : #FA1E51 */
 
-/* For Hover Cursor Effect use .hover-cursor-effect */
+/* For Hover Cursor Effect use .*/
 
 .hover-underline {
   @apply relative inline-block;
@@ -70,4 +70,28 @@ body {
 .hover-underline:hover::after {
   @apply scale-x-100;
   transform-origin: left;
+}
+
+/* Dropdown animation */
+.dropdown {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.dropdown.show {
+  max-height: 500px;
+  /* big enough to fit all links */
+}
+
+/* Mobile link animation */
+.mobile-link {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.dropdown.show .mobile-link {
+  opacity: 1;
+  transform: translateX(0);
 }

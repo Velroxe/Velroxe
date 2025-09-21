@@ -2,7 +2,6 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import CursorFollower from "@/components/ui/CursorFollower";
 import NavigationBar from "@/components/layout/NavigationBar";
 import Footer from "@/components/layout/Footer";
 import { ToastContainer } from "react-toastify";
@@ -116,7 +115,6 @@ export default function RootLayout({
           enableSystem={true}
         >
           <ToastContainer />
-          <CursorFollower />
           <NavigationBar />
           <div className="pt-20 md:pt-24">{children}</div>
           <Footer />

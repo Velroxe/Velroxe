@@ -204,7 +204,7 @@ export default function PortfolioHome() {
             {[...projects, ...projects].map((project, idx) => (
               <div
                 key={idx}
-                className="min-w-[250px] max-w-[250px] hover-cursor-effect rounded-xl glassmorphism shadow-md overflow-hidden bg-white dark:bg-black border border-[var(--borderColor1)]"
+                className="min-w-[250px] max-w-[250px] rounded-xl glassmorphism shadow-md overflow-hidden bg-white dark:bg-black border border-[var(--borderColor1)]"
               >
                 <div className="relative w-full h-40">
                   <Image

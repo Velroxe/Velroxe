@@ -30,7 +30,7 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Left: Logo + tagline */}
           <div>
-            <Link href="/" className="relative w-36 h-10 hover-cursor-effect inline-block">
+            <Link href="/" className="relative w-36 h-10 inline-block">
               <img
                 src={
                   currentTheme === "dark"
@@ -53,17 +53,17 @@ const Footer = () => {
               <h4 className="font-semibold mb-3">Services</h4>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/services" className="hover-cursor-effect hover-underline">
+                  <Link href="/services" className="hover-underline">
                     Websites
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services" className="hover-cursor-effect hover-underline">
+                  <Link href="/services" className="hover-underline">
                     E-commerce
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services" className="hover-cursor-effect hover-underline">
+                  <Link href="/services" className="hover-underline">
                     SaaS
                   </Link>
                 </li>
@@ -74,17 +74,17 @@ const Footer = () => {
               <h4 className="font-semibold mb-3">Company</h4>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/about" className="hover-cursor-effect hover-underline">
+                  <Link href="/about" className="hover-underline">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="/portfolio" className="hover-cursor-effect hover-underline">
+                  <Link href="/portfolio" className="hover-underline">
                     Portfolio
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="hover-cursor-effect hover-underline">
+                  <Link href="/contact" className="hover-underline">
                     Contact
                   </Link>
                 </li>
@@ -104,28 +104,28 @@ const Footer = () => {
               <Link
                 href={contactDetails.socialLinks.github}
                 target="_blank"
-                className="hover-cursor-effect hover:text-blue-500 transition-colors"
+                className="hover:text-blue-500 transition-colors"
               >
                 <FaGithub />
               </Link>
               <Link
                 href={contactDetails.socialLinks.linkedIn}
                 target="_blank"
-                className="hover-cursor-effect hover:text-blue-500 transition-colors"
+                className="hover:text-blue-500 transition-colors"
               >
                 <FaLinkedin />
               </Link>
               <Link
                 href={contactDetails.socialLinks.x}
                 target="_blank"
-                className="hover-cursor-effect hover:text-blue-500 transition-colors"
+                className="hover:text-blue-500 transition-colors"
               >
                 <FaXTwitter />
               </Link>
               <Link
                 href={contactDetails.socialLinks.instagram}
                 target="_blank"
-                className="hover-cursor-effect hover:text-pink-500 transition-colors"
+                className="hover:text-pink-500 transition-colors"
               >
                 <FaInstagram />
               </Link>
@@ -138,14 +138,14 @@ const Footer = () => {
           <div className="h-full w-full flex flex-col md:flex-row justify-between items-center gap-2 max-w-6xl mx-auto">
             <p>© 2025 Velroxe. All rights reserved.</p>
             <div className="flex gap-4">
-              <Link href="/privacy-policy" className="hover-underline hover-cursor-effect">
+              <Link href="/privacy-policy" className="hover-underline">
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="hover-underline hover-cursor-effect">
+              <Link href="/terms-of-service" className="hover-underline">
                 Terms of Service
               </Link>
             </div>
-            <p className="text-gray-500 dark:text-gray-500">Built with Next.js + GSAP</p>
+            <p className="text-gray-500 dark:text-gray-500">Built with Next.js</p>
           </div>
         </div>
       </div>

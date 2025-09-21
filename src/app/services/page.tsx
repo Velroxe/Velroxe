@@ -29,7 +29,7 @@ function ServiceItem({ item }: { item: string }) {
     <li>
       <Link
         href="/contact"
-        className="flex items-center gap-3 cursor-pointer hover-cursor-effect w-fit group"
+        className="flex items-center gap-3 cursor-pointer w-fit group"
       >
         {/* The dot */}
         <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 transition-transform group-hover:translate-x-1" />
