@@ -138,10 +138,10 @@ const Footer = () => {
           <div className="h-full w-full flex flex-col md:flex-row justify-between items-center gap-2 max-w-6xl mx-auto">
             <p>© 2025 Velroxe. All rights reserved.</p>
             <div className="flex gap-4">
-              <Link href="/privacy" className="hover-underline hover-cursor-effect">
+              <Link href="/privacy-policy" className="hover-underline hover-cursor-effect">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover-underline hover-cursor-effect">
+              <Link href="/terms-of-service" className="hover-underline hover-cursor-effect">
                 Terms of Service
               </Link>
             </div>

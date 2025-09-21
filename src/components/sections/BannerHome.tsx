@@ -5,6 +5,7 @@ import { PiPaperPlaneRight } from "react-icons/pi"
 import { MdArrowOutward } from "react-icons/md"
 import Image from "next/image"
 import Link from "next/link"
+import { taglines } from "@/utils/constants"
 
 const BannerHome = () => {
   return (
@@ -24,8 +25,7 @@ const BannerHome = () => {
             Software Development Agency
           </h1>
           <p className="mt-6 text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-md">
-            We build cutting-edge digital solutions to empower your business and
-            bring your vision to life.
+            {taglines[0]}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-4 justify-center lg:justify-start">

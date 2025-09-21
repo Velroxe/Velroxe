@@ -1,3 +1,7 @@
+// Taglines
+export const taglines = [
+  "We design and develop websites, mobile apps, web apps, and SaaS platforms that drive growth for businesses globally.",
+];
 
 // Contact Details
 export const contactDetails = {
