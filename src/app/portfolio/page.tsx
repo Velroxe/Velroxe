@@ -38,16 +38,39 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
     const videoEl = videoRef.current;
     const imageEl = imageRef.current;
 
+    // Start with video behind image
+    videoEl.style.zIndex = "0";
+    imageEl.style.zIndex = "10";
+
+    const handleCanPlay = () => {
+      // Once the video is ready to play, allow z-index switch when visible
+      videoEl.dataset.ready = "true";
+    };
+
+    const handleError = () => {
+      // If video fails, keep image on top
+      videoEl.dataset.ready = "false";
+      videoEl.style.zIndex = "0";
+      imageEl.style.zIndex = "10";
+    };
+
+    videoEl.addEventListener("canplay", handleCanPlay);
+    videoEl.addEventListener("error", handleError);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
-            videoEl.play().catch(() => { });
-            imageEl.style.opacity = "0"; // hide overlay image
+            if (videoEl.dataset.ready === "true") {
+              videoEl.play().catch(() => {});
+              videoEl.style.zIndex = "10";
+              imageEl.style.zIndex = "0";
+            }
           } else {
             videoEl.pause();
             videoEl.currentTime = 0;
-            imageEl.style.opacity = "1"; // show overlay image
+            videoEl.style.zIndex = "0";
+            imageEl.style.zIndex = "10";
           }
         });
       },
@@ -56,22 +79,39 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
 
     observer.observe(cardRef.current);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      videoEl.removeEventListener("canplay", handleCanPlay);
+      videoEl.removeEventListener("error", handleError);
+    };
   }, []);
 
   const handleMouseEnter = () => {
     if (window.innerWidth > 768 && videoRef.current && imageRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-      imageRef.current.style.opacity = "0"; // fade out on hover
+      const videoEl = videoRef.current;
+      const imageEl = imageRef.current;
+
+      videoEl.currentTime = 0;
+      videoEl.play()
+        .then(() => {
+          if (videoEl.readyState >= 3) {
+            videoEl.style.zIndex = "10";
+            imageEl.style.zIndex = "0";
+          }
+        })
+        .catch(() => {});
     }
   };
 
   const handleMouseLeave = () => {
     if (window.innerWidth > 768 && videoRef.current && imageRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-      imageRef.current.style.opacity = "1"; // show overlay again
+      const videoEl = videoRef.current;
+      const imageEl = imageRef.current;
+
+      videoEl.pause();
+      videoEl.currentTime = 0;
+      videoEl.style.zIndex = "0";
+      imageEl.style.zIndex = "10";
     }
   };
 
@@ -82,23 +122,27 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Image/Video */}
+      {/* Media Container */}
       <div className="relative w-full h-56 md:h-64 overflow-hidden">
-        {/* Static image */}
+        {/* Image always present */}
         <Image
           ref={imageRef}
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover absolute inset-0 z-10 transition-opacity duration-300"
+          className="object-cover absolute inset-0 transition-all duration-300"
+          style={{ zIndex: 10 }}
         />
-        {/* Video with Multiple Sources */}
+
+        {/* Video layered underneath initially */}
         <video
           ref={videoRef}
-          className="w-full h-full object-cover absolute inset-0"
+          className="w-full h-full object-cover absolute inset-0 transition-all duration-300"
           muted
           loop
           playsInline
+          preload="auto"
+          style={{ zIndex: 0 }}
         >
           {project.videos.map((src, idx) => (
             <source key={idx} src={src} type={`video/${src.split('.').pop()}`} />
@@ -114,7 +158,6 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           {project.description}
         </p>
 
-        {/* Technologies */}
         <div className="flex flex-wrap gap-2">
           {project.technologies.map((tech, index) => (
             <span
@@ -125,7 +168,6 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
             </span>
           ))}
         </div>
-
       </div>
     </div>
   );
