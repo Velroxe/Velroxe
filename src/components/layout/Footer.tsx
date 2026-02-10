@@ -136,7 +136,7 @@ const Footer = () => {
         {/* Bottom strip */}
         <div className="border-t border-black/10 dark:border-white/10 py-4 text-center text-xs text-gray-600 dark:text-gray-400 px-6 md:px-12">
           <div className="h-full w-full flex flex-col md:flex-row justify-between items-center gap-2 max-w-6xl mx-auto">
-            <p>© 2025 Velroxe. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Velroxe. All rights reserved.</p>
             <div className="flex gap-4">
               <Link href="/privacy-policy" className="hover-underline">
                 Privacy Policy
